@@ -63,7 +63,7 @@ Below we visualize **how IoU improves per class during training**, comparing pre
 ---
 
 ## 🏆 Acknowledgements
-- [Google PaliGemma](https://huggingface.co/google/paligemma)  
+- [Google PaliGemma](https://huggingface.co/google/paligemma2-3b-pt-224)  
 - [Hugging Face Transformers](https://huggingface.co/docs/transformers)  
 - Hugging Face Valorant Dataset (custom curated)  
 
