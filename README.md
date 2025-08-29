@@ -25,41 +25,34 @@ Model weights are publically available on hugging face and can be downloaded fro
 
 ### Quantitative Improvements
 
-| Metric            | Pretrained | Fine-tuned | % Improvement |
-|-------------------|------------|------------|---------------|
-| Avg IoU (Class 0) | 0.0017     | 0.0046     | **+171%**     |
-| Avg IoU (Class 1) | 0.0070     | 0.0570     | **+714%**     |
-| Avg IoU (Class 2) | 0.0140     | 0.0850     | **+507%**     |
-| Avg IoU (Class 3) | 0.0210     | 0.0970     | **+362%**     |
-| mAP               | 0.0000     | 0.0070     | –             |
-| Accuracy          | 1.0000     | 0.9960     | -0.4%         |
-| Recall            | 1.0000     | 0.9960     | -0.4%         |
+## Final mAP Results
 
-> **Key takeaway:** Fine-tuning significantly boosts IoU across all classes (up to **7× improvement**) while maintaining nearly perfect accuracy and recall.
+| Metric        | Pretrained | Finetuned | Δ Absolute | Δ % Improvement |
+|---------------|------------|-----------|------------|-----------------|
+| mAP@[0.50:0.95] | 0.083      | **0.134** | +0.051     | **+61.4%**      |
+| AP@0.50       | 0.211      | **0.342** | +0.131     | **+62.1%**      |
+| AP@0.75       | 0.050      | **0.082** | +0.032     | **+64.0%**      |
+| AP (small)    | 0.048      | **0.084** | +0.036     | **+75.0%**      |
+| AP (medium)   | 0.245      | **0.372** | +0.127     | **+51.8%**      |
+| AP (large)    | 0.262      | **0.359** | +0.097     | **+37.0%**      |
+
+
+> **Key takeaway:**
+> - The model saw a 61% improvement in mAP@[0.50:0.95], showing finetuning significantly improved overall detection quality across IoU thresholds.
+> - Both AP@0.50 (+62%) and AP@0.75 (+64%) improved, meaning the model not only detects more objects but also localizes them more accurately.
+> - The largest relative gain is on small objects (+75%), which is critical in many real-world tasks where small targets dominate.
+> - Performance across large objects improved but not significantly as compare to other improvements. Suggesting that model already handled large objects quite well, leaving less room for finetuned improvements.
 
 ---
 
 ### Qualitative Results
 
-Below is a comparison of predictions on the first 5 samples:
+Below is a comparison of predictions on the first 5 samples which clearly shows the head to head comparison and improvements in finetuned model's localization abilities.
 
-<img width="1462" height="2490" alt="valorant-pred-comparison" src="https://github.com/user-attachments/assets/cdb7ce90-357a-43f0-a31f-89384764f365" />
+<img width="1462" height="2490" alt="improved_paligemma_q" src="https://github.com/user-attachments/assets/bceaec50-46b4-48cd-9259-5940179f3268" />
 
 *(Left: Pretrained | Right: Fine-tuned)*
 
----
-
-## 📊 Training Dynamics
-
-### Per-Class IoU Progression
-Below we visualize **how IoU improves per class during training**, comparing pretrained vs fine-tuned.
-
-| Pretrained | Fine-tuned |
-|------------|------------|
-| <img width="2528" height="1328" alt="W B Chart 8_24_2025, 2_04_17 AM" src="https://github.com/user-attachments/assets/16d90f45-26ea-42a4-b9ce-bae4fcad6894" /> | <img width="2528" height="1328" alt="finetuned-teammate" src="https://github.com/user-attachments/assets/65249b0e-6e70-4749-a6e8-0ffbef2bd790" /> |
-| <img width="2528" height="1328" alt="W B Chart 8_24_2025, 2_05_02 AM" src="https://github.com/user-attachments/assets/1895d4c9-3734-4835-a5bc-dea102f98167" /> |<img width="2528" height="1328" alt="W B Chart 8_24_2025, 2_09_53 AM" src="https://github.com/user-attachments/assets/324b6edd-1bb2-47e8-a065-a1c28ad5180e" />|
-| <img width="2528" height="1328" alt="W B Chart 8_24_2025, 2_05_22 AM" src="https://github.com/user-attachments/assets/d764e681-a168-42f2-9c9d-c408eeeba08f" /> | <img width="2528" height="1328" alt="W B Chart 8_24_2025, 2_10_06 AM" src="https://github.com/user-attachments/assets/7b52d5a0-4f11-4a58-b1d2-c03b4aaf38a7" />|
-| <img width="2528" height="1328" alt="W B Chart 8_24_2025, 2_07_10 AM" src="https://github.com/user-attachments/assets/6ea6b788-79f2-4fa0-8f5c-7503e5495d67" />|<img width="2528" height="1328" alt="W B Chart 8_24_2025, 2_09_53 AM" src="https://github.com/user-attachments/assets/324b6edd-1bb2-47e8-a065-a1c28ad5180e" />|
 ---
 
 ## 🏆 Acknowledgements
